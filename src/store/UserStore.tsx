@@ -4,7 +4,7 @@ import jwt_decode from "jwt-decode";
 export default class UserStore {
   // предварительно указываем типы для _isAuth и _user
   _isAuth: boolean;
-  private _user: {};
+  _user: {};
 
   // Конструктор будет вызываться при создании объекта данного класса.
   // Например, в index.js, в Context.Provider, в  его props-value
@@ -28,8 +28,8 @@ export default class UserStore {
     // Декодируем полученный токен. Поскольку Typescript не может вывести правильный тип
     // и .exp не известен, самый простой выход — преобразовать результат в any.
     const decodedToken: any = jwt_decode(token);
-    // создаём переменную со значением текущего времени
-    const dateNow = new Date();
+    // создаём переменную со значением текущего времени (тип: Date)
+    const dateNow: Date = new Date();
 
     // сравниваем предельный установленный срок действия токена с текущим
     if (decodedToken.exp < dateNow.getTime()) {
@@ -46,7 +46,8 @@ export default class UserStore {
     this._isAuth = bool;
   }
 
-  // Данная функция для изменения пользователя
+  // Данная функция для изменения пользователя, принимает параметром пользователя,
+  // и и присваивает его переменной _user
   setUser(user: {}) {
     this._user = user;
   }
