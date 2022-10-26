@@ -1,14 +1,20 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
+import { Context } from "..";
 import { authRoutes, publicRoutes } from "../routes";
 import { SHOP_ROUTE } from "../utils/consts";
+import { observer } from "mobx-react-lite";
 
-const AppRouter: FC = () => {
-  const isAuth: boolean = true;
+const AppRouter: FC = observer(() => {
+  // const isAuth: boolean = true;
+
+  // здесь получаем UserStore() из контекста
+  const { user } = useContext(Context);
+  // console.log(user);
 
   return (
     <Switch>
-      {isAuth &&
+      {user.isAuth &&
         authRoutes.map(({ path, Component }) => (
           <Route key={path} path={path} component={Component} exact />
         ))}
@@ -18,6 +24,6 @@ const AppRouter: FC = () => {
       <Redirect to={SHOP_ROUTE} />
     </Switch>
   );
-};
+});
 
 export default AppRouter;

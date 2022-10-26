@@ -1,3 +1,4 @@
+// готовая страница
 import { makeAutoObservable } from "mobx";
 import { IBrand, IDevice, IType } from "../types/types";
 
