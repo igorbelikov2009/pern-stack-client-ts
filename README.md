@@ -26,3 +26,7 @@
     без emotion работать не будет
 
 ### `npm start`
+
+### // отключить eslint следующую (нижнюю) строку // eslint-disable-next-line
+
+// eslint-disable-next-line

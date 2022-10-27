@@ -32,3 +32,5 @@ root.render(
     <App />
   </Context.Provider>
 );
+// отключить eslint следующую строку
+// eslint-disable-next-line

@@ -17,12 +17,10 @@ const Auth: FC = observer(() => {
   // сравни типизацию changeEmail и changePassword
   const changeEmail: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     setEmail(e.target.value);
-    console.log(email);
   };
 
   const changePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
-    console.log(password);
   };
 
   const click = () => {
