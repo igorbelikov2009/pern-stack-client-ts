@@ -1,3 +1,4 @@
+// страница готовая
 import React, { FC } from "react";
 import { Card, Col, Image } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
@@ -5,20 +6,11 @@ import star from "../assets/star.png";
 import { IDevice } from "../types/types";
 import { DEVICE_ROUTE } from "../utils/consts";
 
-// interface IDevice {
-//   id: number;
-//   name: string;
-//   price: number;
-//   rating: number;
-//   img: string;
-// }
-
-interface DeviceItemProps {
+export interface DeviceItemProps {
   device: IDevice;
 }
 
 const DeviceItem: FC<DeviceItemProps> = ({ device }) => {
-  // const DeviceItem = ({ device }: any) => {
   const history = useHistory();
   // console.log(device.id);
 
