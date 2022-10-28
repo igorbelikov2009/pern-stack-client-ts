@@ -11,7 +11,7 @@ export default class UserStore {
   // Например, в index.js, в Context.Provider, в  его props-value
   // мы создаём объект user: new UserStore().
   constructor() {
-    this._isAuth = true; // поменять на false
+    this._isAuth = false; // поменять на false
     this._user = {};
     makeAutoObservable(this); // теперь mobx будет следить за изменениями этих переменных в конструкторе.
     //  При изменении этих переменных, компоненты будут перерендерываться

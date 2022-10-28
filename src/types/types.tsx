@@ -39,3 +39,9 @@ export interface IInfo {
   description: string;
   number?: number | undefined;
 }
+
+export interface IRegistrationUser {
+  email: string;
+  password: string;
+  role?: string;
+}

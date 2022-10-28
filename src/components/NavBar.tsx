@@ -47,20 +47,19 @@ onClick={() => navigate(DEVICE_ROUTE + "/" + device.id)}
           <Nav className="ml-auto" style={{ color: "white" }}>
             <BasketNavBar />
 
-            {/* TypeError: Cannot read properties of undefined (reading 'role')
-        
-        {user.isAuth && user.User.role === "ADMIN" && (
-          <Button
-            className={"mr-3"}
-            variant={"outline-light"}
-            onClick={() => {
-              history.push(ORDERS_ROUTE);
-            }}
-          >
-            Заказы
-          </Button>
-        )} */}
+            {/* TypeError: Cannot read properties of undefined (reading 'role')*/}
 
+            {user.isAuth && user.role === "ADMIN" && (
+              <Button
+                className={"mr-3"}
+                variant={"outline-light"}
+                onClick={() => {
+                  history.push(ORDERS_ROUTE);
+                }}
+              >
+                Заказы
+              </Button>
+            )}
             {user.isAuth && (
               <Button
                 className={"mr-3"}

@@ -1,10 +1,11 @@
-// сделать const click = async () =>
+// Страница готовая
 import { observer } from "mobx-react-lite";
 import React, { FC, useContext, useState } from "react";
-import { NavLink, useHistory, useLocation } from "react-router-dom";
-import { Context } from "..";
-import { LOGIN_ROUTE, REGISTRATION_ROUTE } from "../utils/consts";
 import { Container, Card, Form, Row, Button } from "react-bootstrap";
+import { NavLink, useHistory, useLocation } from "react-router-dom";
+import { LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE } from "../utils/consts";
+import { login, registration } from "../http/userApi";
+import { Context } from "..";
 
 const Auth: FC = observer(() => {
   const { user } = useContext(Context);
@@ -23,29 +24,26 @@ const Auth: FC = observer(() => {
     setPassword(e.target.value);
   };
 
-  const click = () => {
-    console.log(click);
+  const click = async () => {
+    try {
+      let data;
+      if (isLogin) {
+        data = await login({ email, password });
+        console.log(data);
+      } else {
+        // data = await registration(email, password);
+        data = await registration({ email, password });
+        console.log(data);
+      }
+      user.setUser(user);
+      user.setIsAuth(true);
+      /* если регистрация и логин прошли успешно,
+       то делаем редирект на страничку магазина */
+      history.push(SHOP_ROUTE);
+    } catch (e: any) {
+      alert(e.response.data.message);
+    }
   };
-
-  // // так будет
-  //   const click = async () => {
-  //   try {
-  //     let data;
-  //     if (isLogin) {
-  //       data = await login(email, password);
-  //     } else {
-  //       data = await registration(email, password);
-  //       console.log(data);
-  //     }
-  //     user.setUser(user);
-  //     user.setIsAuth(true);
-  //     /* если регистрация и логин прошли успешно,
-  //      то делаем редирект на стриничку магазина */
-  //     history.push(SHOP_ROUTE);
-  //   } catch (e) {
-  //     alert(e.response.data.message);
-  //   }
-  // };
 
   return (
     <Container

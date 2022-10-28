@@ -10,6 +10,7 @@ const CreateDevice: FC<ICreateModalProps> = observer(({ show, onHide }) => {
   const { device } = useContext(Context);
   const [name, setName] = useState<string>("");
   const [price, setPrice] = useState<number>(0);
+  // eslint-disable-next-line
   const [file, setFile] = useState<any | null>(null);
   const [info, setInfo] = useState<IInfo[]>([]);
   // const [type, setType] = useState(null);
@@ -19,10 +20,19 @@ const CreateDevice: FC<ICreateModalProps> = observer(({ show, onHide }) => {
 
   // info  =======================================
   const addInfo = () => {
+    // Здесь вызываем функцию setInfo, которая изменяет состояние. В неё передаём массив,
+    // в нём разворачиваем старый массив информации и добавляем в него новый элемент:
+    //   { title: "", description: "", number: Date.now() }.
+    // number, своего рода идентификатор, получаем из времени.
     setInfo([...info, { title: "", description: "", number: Date.now() }]);
     console.log(info);
   };
+
+  // Параметром передаём номер number, полученный из времени
   const removeInfo = (number: number | undefined) => {
+    // Здесь вызываем функцию setInfo, которая изменяет состояние. По существующему массиву
+    // с помощью фунции filter пробегаемся и проверяем: совпадает ли номер элемента
+    // с номером, который мы передали параметром.
     setInfo(info.filter((i) => i.number !== number));
     // console.log(info);
   };
@@ -33,7 +43,8 @@ const CreateDevice: FC<ICreateModalProps> = observer(({ show, onHide }) => {
   // 3. number - номер характеристики, у которой значение мы будем изменять
   // Пробегаем по массиву информации
   // Проверяем, если номер совпадает с номером элемента итерации
-  // то, тогда мы возвращаем объект, новый объект. Разворачиваем в него характеристику, и по ключу (title либо description) заменяем у неё поле value
+  // то, тогда мы возвращаем объект, новый объект. Разворачиваем в него характеристику,
+  // и по ключу (title либо description) заменяем у неё поле value
   // Если номер не совпадает, то мы возвращаем объект неизменённым
   const changeInfo = (
     key: string,
