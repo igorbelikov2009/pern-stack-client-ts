@@ -3,12 +3,7 @@ import { Button, Card, Col, Container, Image, Row } from "react-bootstrap";
 import bigStar from "../assets/bigStar.png";
 import { observer } from "mobx-react-lite";
 import { Context } from "..";
-
-interface IInfo {
-  id: number;
-  title: string;
-  description: string;
-}
+import { IInfo } from "../types/types";
 
 const DevicePage: FC = observer(() => {
   // здесь получаем UserStore() и BasketStore()  из контекста

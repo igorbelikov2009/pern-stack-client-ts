@@ -1,8 +1,8 @@
 import React, { FC, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
-import { CreateModalProps } from "../../types/types";
+import { ICreateModalProps } from "../../types/types";
 
-const CreateBrand: FC<CreateModalProps> = ({ show, onHide }) => {
+const CreateBrand: FC<ICreateModalProps> = ({ show, onHide }) => {
   const [value, setValue] = useState<string>("");
 
   const addBrand: React.MouseEventHandler<HTMLButtonElement> = () => {

@@ -3,11 +3,6 @@ export interface IRoute {
   Component: React.FC<{}>;
 }
 
-// export interface IUser {
-//   _isAuth: boolean;
-//   _user: {};
-// }
-
 export interface IType {
   id: number;
   name: string;
@@ -17,12 +12,6 @@ export interface IBrand {
   id: number;
   name: string;
 }
-
-// export interface IInfo {
-// id: number;
-// title: string;
-// description: string;
-// }
 
 export interface IDevice {
   id: number;
@@ -39,7 +28,14 @@ export interface IBasket {
   // count: number;
 }
 
-export interface CreateModalProps {
+export interface ICreateModalProps {
   show: boolean;
   onHide: () => void;
+}
+
+export interface IInfo {
+  id?: number;
+  title: string;
+  description: string;
+  number?: number | undefined;
 }
