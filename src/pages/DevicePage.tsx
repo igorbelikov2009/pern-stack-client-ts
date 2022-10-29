@@ -1,4 +1,4 @@
-import React, { FC, useContext } from "react";
+import React, { FC, useContext, useState } from "react";
 import { Button, Card, Col, Container, Image, Row } from "react-bootstrap";
 import bigStar from "../assets/bigStar.png";
 import { observer } from "mobx-react-lite";
@@ -8,6 +8,7 @@ import { IInfo } from "../types/types";
 const DevicePage: FC = observer(() => {
   // здесь получаем UserStore() и BasketStore()  из контекста
   const { user, basket } = useContext(Context);
+  // const [device, setDevice] = useState({ info: [] });
   const device = {
     id: 1,
     name: "Iphone 12 pro",

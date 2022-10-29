@@ -4,21 +4,22 @@ export interface IRoute {
 }
 
 export interface IType {
-  id: number;
+  id?: number;
   name: string;
 }
 
 export interface IBrand {
-  id: number;
+  id?: number;
   name: string;
 }
 
 export interface IDevice {
-  id: number;
-  name: string;
-  price: number;
-  rating: number;
-  img: string;
+  id?: number;
+  name?: string;
+  price?: number;
+  rating?: number;
+  // img?: string;
+  img?: any;
   // info?: IInfo;
 }
 

@@ -1,6 +1,14 @@
 // здесь настроим axios
 import axios, { AxiosRequestConfig } from "axios";
 
+// eslint-disable-next-line
+// enum StatusCode {
+//   Unauthorized = 401, // Неавторизованный
+//   Forbidden = 403, // Запрещенный
+//   TooManyRequests = 429, // Слишком много запросов
+//   InternalServerError = 500, // Внутренняя ошибка сервера
+// }
+
 // обычный хост
 const $host = axios.create({
   baseURL: process.env.REACT_APP_API_URL,

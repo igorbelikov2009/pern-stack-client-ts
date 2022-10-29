@@ -1,12 +1,23 @@
+// Страница готовая
 import React, { FC, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
+import { createType } from "../../http/deviceApi";
 import { ICreateModalProps } from "../../types/types";
 
 const CreateType: FC<ICreateModalProps> = ({ show, onHide }) => {
   const [value, setValue] = useState<string>("");
 
   const addType: React.MouseEventHandler<HTMLButtonElement> = () => {
-    console.log("Added");
+    // при нажатии на кнопку, нам необходимо отправить запрос createType().
+    // В параметр запроса передаём объект создаваемого типа (брэнда и .....)
+    // у него указываем только имя, которое мы получаем из состояния
+    createType({ name: value }).then((data) => {
+      setValue("");
+      // в случае успешного запроса, setValue присваиваем пустую строку(""),
+      // то есть инпут будем обнулять
+      onHide();
+      // после чего вызываем функцию закрытия модального окна
+    });
   };
 
   return (
@@ -32,7 +43,6 @@ const CreateType: FC<ICreateModalProps> = ({ show, onHide }) => {
           Закрыть
         </Button>
 
-        {/*   <Button variant="outline-success" onClick={addType}> */}
         <Button variant="outline-success" onClick={addType}>
           Добавить
         </Button>

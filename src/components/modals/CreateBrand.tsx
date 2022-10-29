@@ -1,12 +1,17 @@
+// Страница готовая
 import React, { FC, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
+import { createBrand } from "../../http/deviceApi";
 import { ICreateModalProps } from "../../types/types";
 
 const CreateBrand: FC<ICreateModalProps> = ({ show, onHide }) => {
   const [value, setValue] = useState<string>("");
 
   const addBrand: React.MouseEventHandler<HTMLButtonElement> = () => {
-    console.log("Added");
+    createBrand({ name: value }).then((data) => {
+      setValue(""); // то есть инпут будем обнулять
+      onHide(); // после чего вызываем функцию закрытия модального окна
+    });
   };
 
   return (

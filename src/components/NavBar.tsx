@@ -1,3 +1,4 @@
+// страница готовая
 import { observer } from "mobx-react-lite";
 import React, { FC, useContext } from "react";
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
@@ -46,8 +47,6 @@ onClick={() => navigate(DEVICE_ROUTE + "/" + device.id)}
         {user.isAuth ? (
           <Nav className="ml-auto" style={{ color: "white" }}>
             <BasketNavBar />
-
-            {/* TypeError: Cannot read properties of undefined (reading 'role')*/}
 
             {user.isAuth && user.role === "ADMIN" && (
               <Button

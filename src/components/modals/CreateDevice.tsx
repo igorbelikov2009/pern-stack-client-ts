@@ -1,8 +1,10 @@
-import React, { FC, useContext, useState } from "react";
+// Страница готовая
+import React, { FC, useContext, useState, useEffect } from "react";
 import { Button, Dropdown, Form, Row, Col, Modal } from "react-bootstrap";
 import { Context } from "../..";
-import { IBrand, ICreateModalProps, IInfo, IType } from "../../types/types";
+import { createDevice, fetchBrands, fetchTypes } from "../../http/deviceApi";
 import { observer } from "mobx-react-lite";
+import { IBrand, ICreateModalProps, IInfo, IType } from "../../types/types";
 
 // Оборачиваем модальное окно в observer, чтобы мы могли типы(или брэнды)
 // выбирать и сразу видеть рендеринг.
@@ -10,13 +12,19 @@ const CreateDevice: FC<ICreateModalProps> = observer(({ show, onHide }) => {
   const { device } = useContext(Context);
   const [name, setName] = useState<string>("");
   const [price, setPrice] = useState<number>(0);
-  // eslint-disable-next-line
   const [file, setFile] = useState<any | null>(null);
   const [info, setInfo] = useState<IInfo[]>([]);
   // const [type, setType] = useState(null);
   // const [brand, setBrand] = useState(null); эти состояния можно убрать, поскольку
   // в DeviceStore у нас уже есть объекты  this._selectedType = {}
   // и this._selectedBrand = {}, отвечающие за выбранные тип и брэнд
+
+  useEffect(() => {
+    // каждый раз, при загрузке модального окна, будем подгружать брэнды и типы
+    // из которых в селектах будем выбирать нужные нам тип и брэнд
+    fetchTypes().then((data) => device.setTypes(data));
+    fetchBrands().then((data) => device.setBrands(data));
+  }, [device]);
 
   // info  =======================================
   const addInfo = () => {
@@ -68,8 +76,30 @@ const CreateDevice: FC<ICreateModalProps> = observer(({ show, onHide }) => {
     setFile(file);
   };
 
+  //  остаётся отправлять запрос на сервис
   const addDevice: React.MouseEventHandler<HTMLButtonElement> = () => {
-    console.log("Added");
+    //  создаём объект formData
+    const formData = new FormData();
+    // и с помощью функции append передаём первым параметром ключ, а вторым значение
+    formData.append("name", name);
+    // У price тип: number. Значение для отправки запроса должно быть либо строковым,
+    // либо блоковым. Грубо говоря блок - это набор битов, поэтому отправляем файл.
+    // Для этого price сконвентируем в строку
+    formData.append("price", `${price}`);
+    // как "img" передаём file, который потом выбираем из компьютера
+    formData.append("img", file);
+    // "brandId" и "typeId" получаем из DeviceStore из выбранного элемента,
+    // не забываем нам нужен только id, а не целиком объект
+    formData.append("brandId", device.selectedBrand.id);
+    formData.append("typeId", device.selectedType.id);
+    // Массив info невозможно передать, либо строка, либо блок.
+    // Поэтому массив перегоняем в строку: JSON.stringify(info)
+    // А на сервере эта JSON-строка будет парситься обратно в массив.
+    formData.append("info", JSON.stringify(info));
+
+    // Функция createDevice() отправляет запрос на сервис.
+    // Передаём formData как параметр функции, и, если запрос прошёл успешно, будем закрывать модалку
+    createDevice(formData).then((data) => onHide());
   };
 
   return (
