@@ -1,5 +1,5 @@
 import { $host, $authHost } from ".";
-import { IBrand, IDevice, IType } from "../types/types";
+import { IBrand, IType } from "../types/types";
 
 // Типы ========================= Создание типов
 export const createType = async (type: IType): Promise<IType> => {
@@ -18,7 +18,7 @@ export const fetchTypes = async () => {
 
 // Удаление типов
 // Чтобы удалить тип, нужна авторизация, нужно быть админом $authHost
-export const deleteType = async (id: number): Promise<number> => {
+export const deleteType = async (id: any): Promise<any> => {
   const { data } = await $authHost({ method: "DELETE", url: "api/type/" + id });
   return data;
 };
@@ -34,7 +34,7 @@ export const fetchBrands = async () => {
   return data;
 };
 // Удаление брэнда, нужна авторизация, нужно быть админом $authHost
-export const deleteBrand = async (id: number): Promise<number> => {
+export const deleteBrand = async (id: any): Promise<any> => {
   const { data } = await $authHost({
     method: "DELETE",
     url: "api/brand/" + id,

@@ -1,5 +1,5 @@
-import { observer } from "mobx-react-lite";
 // страница готовая
+import { observer } from "mobx-react-lite";
 import React, { FC, useContext } from "react";
 import { ListGroup } from "react-bootstrap";
 import { Context } from "..";
@@ -22,7 +22,7 @@ const TypeBar: FC = observer(() => {
         active={"all" === device.selectedType}
         onClick={getAllDevices}
       >
-        All
+        Все типы устройств
       </ListGroup.Item>
 
       {device.types.map((type: IType) => (

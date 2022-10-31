@@ -20,7 +20,7 @@ export interface IDevice {
   rating?: number;
   // img?: string;
   img?: any;
-  // info?: IInfo;
+  info?: IInfo;
 }
 
 export interface IBasket {
@@ -46,3 +46,9 @@ export interface IRegistrationUser {
   password: string;
   role?: string;
 }
+
+export type DeleteBrandOrTypeProps = {
+  show: boolean;
+  onHide: () => void;
+  showSuccessMsgFunc: (msg: any) => void;
+};

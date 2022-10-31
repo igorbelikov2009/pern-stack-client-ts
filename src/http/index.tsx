@@ -1,4 +1,4 @@
-// здесь настроим axios
+// Страница готовая. Здесь настроим axios
 import axios, { AxiosRequestConfig } from "axios";
 
 // eslint-disable-next-line

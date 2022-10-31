@@ -1,3 +1,4 @@
+// Страница готовая
 import { observer } from "mobx-react-lite";
 import React, { FC, useContext, useEffect } from "react";
 import { Context } from "..";
@@ -25,7 +26,9 @@ const Shop: FC = observer(() => {
     // Смотри deviceApi функцию fetchDevices = async (typeId, brandId, page, limit = 5)
     fetchDevices(null, null, 1, 9).then((data) => {
       device.setDevices(data.rows);
-      // data.rows из бэкенда // потому что страницы разбиты на пагинацию
+      // data.rows из бэкенда. Всё дело в том, что мы добавляли пагинацию на получение девайсов
+      // и, помимо самих девайсов, нам так же приходит их количество.
+      // Поэтому здесь девайс мы получаем из поля rows (data.rows)
       device.setTotalCount(data.count); // общее количество товара находится в поле (count) в ответе от сервера
       // смотри DeviceStore: setTotalCount(count) { this._totalCount = count }
     });
@@ -57,6 +60,7 @@ const Shop: FC = observer(() => {
         device.setTotalCount(data.count);
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [device.page, device.selectedType, device.selectedBrand]);
 
   return (
