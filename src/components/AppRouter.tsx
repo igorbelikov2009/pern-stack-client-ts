@@ -1,3 +1,4 @@
+// Страница готовая
 import React, { FC, useContext } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { Context } from "..";
@@ -6,9 +7,6 @@ import { SHOP_ROUTE } from "../utils/consts";
 import { observer } from "mobx-react-lite";
 
 const AppRouter: FC = observer(() => {
-  // const isAuth: boolean = true;
-
-  // здесь получаем UserStore() из контекста
   const { user } = useContext(Context);
   // console.log(user);
 

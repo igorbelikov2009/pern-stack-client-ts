@@ -17,10 +17,11 @@ export interface IDevice {
   id?: number;
   name?: string;
   price?: number;
+  count?: number;
   rating?: number;
   // img?: string;
   img?: any;
-  info?: IInfo;
+  info?: IInfo[];
 }
 
 export interface IBasket {

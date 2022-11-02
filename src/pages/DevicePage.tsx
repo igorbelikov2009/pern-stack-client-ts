@@ -47,7 +47,7 @@ const DevicePage: FC = observer(() => {
   const addDeviceInBasket = (device: IDevice) => {
     if (user.isAuth) {
       addDeviceToBasket(device).then(() => {
-        console.log(basket);
+        // console.log(basket);
         basket.setBasket(device, true);
       });
     } else {

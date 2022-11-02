@@ -6,7 +6,7 @@ import star from "../assets/star.png";
 import { IDevice } from "../types/types";
 import { DEVICE_ROUTE } from "../utils/consts";
 
-export interface DeviceItemProps {
+interface DeviceItemProps {
   device: IDevice;
 }
 
