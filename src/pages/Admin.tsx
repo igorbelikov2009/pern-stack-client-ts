@@ -1,3 +1,4 @@
+// Страница готовая
 import React, { FC, useEffect, useState } from "react";
 import {
   Button,
@@ -35,9 +36,9 @@ const Admin: FC = () => {
   const [showSuccessMsg, setShowSuccessMsg] = useState<boolean>(false);
 
   // pagination
-  const limit = 5;
+  const limit: number = 5;
   const pageCount = Math.ceil(Number(count) / limit);
-  const pages = [];
+  const pages: any[] = [];
 
   for (let number = 1; number < pageCount + 1; number++) {
     pages.push(
@@ -58,6 +59,7 @@ const Admin: FC = () => {
         setCount(count);
       }
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage]);
 
   useEffect(() => {
@@ -68,6 +70,7 @@ const Admin: FC = () => {
         setCurrentPage(1);
       }
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter, successMsg]);
 
   const fetchDevice = () => {

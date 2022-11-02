@@ -1,12 +1,7 @@
+// страница готовая
 import React, { FC } from "react";
 import { Rating } from "@mui/material";
-
-interface IRatingStarsProps {
-  ratingChanged: any;
-  ratingVal: any;
-  isAuth: boolean;
-  isAccessRating: boolean;
-}
+import { IRatingStarsProps } from "../types/types";
 
 // isAccessRating - если есть доступ к рейтингу
 const RatingStars: FC<IRatingStarsProps> = ({

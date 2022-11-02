@@ -52,3 +52,27 @@ export type DeleteBrandOrTypeProps = {
   onHide: () => void;
   showSuccessMsgFunc: (msg: any) => void;
 };
+
+export interface sendOrderProps {
+  auth: boolean;
+  mobile: string | number;
+  basket: any;
+}
+
+export interface fetchOrdersProps {
+  limit: number;
+  page: any;
+  complete: boolean;
+}
+
+export interface fetchChangeStatusOrderProps {
+  complete: boolean;
+  id: number;
+}
+
+export interface IRatingStarsProps {
+  ratingChanged: any;
+  ratingVal: any;
+  isAuth: boolean;
+  isAccessRating: boolean;
+}

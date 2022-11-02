@@ -1,3 +1,4 @@
+// Страница готовая
 import { observer } from "mobx-react-lite";
 import React, { FC, useContext, useEffect, useState } from "react";
 import {
@@ -17,7 +18,7 @@ import {
   fetchOneDevice,
   updateDevices,
 } from "../http/deviceApi";
-import { IBrand, IDevice, IInfo, IType } from "../types/types";
+import { IBrand, IInfo, IType } from "../types/types";
 import { ADMIN_ROUTE } from "../utils/consts";
 
 const DevicePageEdit: FC = observer(() => {
@@ -34,7 +35,6 @@ const DevicePageEdit: FC = observer(() => {
   const [img, setImg] = useState<string>("");
   const [imgFile, setImgFile] = useState<any | null>(null);
   const [info, setInfo] = useState<IInfo[]>([]);
-
   const [isDisabledPutBtn, setDisabledPutBtn] = useState<boolean>(true);
 
   const deleteDevice = () => {
@@ -67,10 +67,12 @@ const DevicePageEdit: FC = observer(() => {
     setInfo([...info, { title: "", description: "", id: Date.now() }]);
     // // console.log(info);
   };
+
   // const removeInfo = (id) => {
   //   setInfo(info.filter((i) => i.id !== id));
   //   // // console.log(info);
   // };
+
   const changeInfo = (key: string, value: string, id: number | undefined) => {
     setInfo(info.map((i) => (i.id === id ? { ...i, [key]: value } : i)));
     // console.log(info);
@@ -149,6 +151,7 @@ const DevicePageEdit: FC = observer(() => {
         setDisabledPutBtn(true);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name, selectBrand, selectType, price, img, info, deviceCurr]);
 
   useEffect(() => {

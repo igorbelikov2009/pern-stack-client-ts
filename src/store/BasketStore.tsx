@@ -1,7 +1,7 @@
-// готовая страница кроме метода async setDeleteItemBasket(device, isAuth = false) {
+// страница готовая
 import { makeAutoObservable } from "mobx";
 import { IBasket, IDevice } from "../types/types";
-// import { deleteDeviceFromBasket } from "../http/deviceApi";
+import { deleteDeviceFromBasket } from "../http/deviceApi";
 
 export default class BasketStore {
   // предварительно указываем типы для _totalPrice, _basket
@@ -16,28 +16,32 @@ export default class BasketStore {
   }
 
   // Удалить элемент из корзины
-  // async setDeleteItemBasket(device, isAuth = false) {
-  //     if (isAuth) {
-  //       // Поучаем из запроса (device.id), затем удаляем этот элемент
-  //       // из корзины методом фильтрации массива по id. То есть создаём новый массив из старого,
-  //       // и оставляем в нём те элементы, у которых item.id !== device.id, записываем в store
-  //       await deleteDeviceFromBasket(device.id).then(() => {
-  //         this._basket = this._basket.filter((item) => item.id !== device.id);
-  //         // из итоговой цены отнимаем сумму стоимости удалённых девайсов, записываем в store
-  //         this._totalPrice -= device.price * device.count;
-  //       });
-  //     } else {
-  //       this._basket = this._basket.filter((item) => item.id !== device.id);
-  //       this._totalPrice -= device.price * device.count;
+  async setDeleteItemBasket(
+    device: any,
+    isAuth: boolean = false
+  ): Promise<void> {
+    if (isAuth) {
+      // Поучаем из запроса (device.id), затем удаляем этот элемент
+      // из корзины методом фильтрации массива по id. То есть создаём новый массив из старого,
+      // и оставляем в нём те элементы, у которых item.id !== device.id, записываем в store
+      await deleteDeviceFromBasket(device.id).then(() => {
+        this._basket = this._basket.filter((item) => item.id !== device.id);
+        // из итоговой цены отнимаем сумму стоимости удалённых девайсов, записываем в store
+        this._totalPrice -= device.price * device.count;
+      });
+    } else {
+      this._basket = this._basket.filter((item) => item.id !== device.id);
+      this._totalPrice -= device.price * device.count;
 
-  //       // Записываем в локальное хранилище браузера по ключу
-  //       // "basket" значение этой корзины из store
-  //       localStorage.setItem("basket", JSON.stringify(this._basket));
-  //     }
-  //   }
+      // Записываем в локальное хранилище браузера по ключу
+      // "basket" значение этой корзины из store
+      localStorage.setItem("basket", JSON.stringify(this._basket));
+    }
+  }
 
   // записать item в корзину
-  setBasket(item: { id: number }, isAuth: boolean = false) {
+  // setBasket(item: { id: number }, isAuth: boolean = false) {
+  setBasket(item: any, isAuth: boolean = false) {
     // проверяем нахождение устройства в корзине
     const checkDeviceInBasket = this._basket.findIndex(
       (device) => device.id === item.id
@@ -80,7 +84,7 @@ export default class BasketStore {
   }
 
   // Установить количество устройств в корзине
-  setCountDevice(deviceId: number, action: string, isAuth: boolean = false) {
+  setCountDevice(deviceId: any, action: string, isAuth: boolean = false) {
     // Находим значение findIndex (-1,.....)
     const itemInd: number = this._basket.findIndex(
       (item) => item.id === deviceId
