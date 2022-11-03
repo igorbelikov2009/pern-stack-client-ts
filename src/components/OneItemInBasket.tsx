@@ -1,3 +1,4 @@
+// Страница готовая
 import React, { FC, useContext } from "react";
 import { Button, Card, Col, Image, Row } from "react-bootstrap";
 import { Context } from "../index";
@@ -25,8 +26,10 @@ const OneItemInBasket: FC<DeviceItemProps> = ({ device }) => {
           <Col xs={4}>
             <Row>
               <Col xs={12}>
-                <b>Title:</b>
-                <NavLink to={`/device/${device.id}`}>{device.name}</NavLink>
+                <b>Название:</b>
+                <NavLink to={`/device/${device.id}`} className="ml-2">
+                  {device.name}
+                </NavLink>
               </Col>
             </Row>
 
@@ -34,7 +37,7 @@ const OneItemInBasket: FC<DeviceItemProps> = ({ device }) => {
             <br />
             <Row>
               <Col xs={12}>
-                <b>Description:</b>
+                <b>Характеристики:</b>
                 <br />
                 <br />
                 {device.info && device.info.length !== 0
@@ -58,7 +61,7 @@ const OneItemInBasket: FC<DeviceItemProps> = ({ device }) => {
                         );
                       }
                     })
-                  : "Description absent"}
+                  : "Описание отсутствует"}
               </Col>
             </Row>
           </Col>
@@ -71,14 +74,14 @@ const OneItemInBasket: FC<DeviceItemProps> = ({ device }) => {
                     variant="outline-dark"
                     onClick={() => basket.setDeleteItemBasket(device, true)}
                   >
-                    Delete from Cart
+                    Удалить из корзины
                   </Button>
                 ) : (
                   <Button
                     variant="outline-dark"
                     onClick={() => basket.setDeleteItemBasket(device)}
                   >
-                    Delete from Cart
+                    Удалить из корзины
                   </Button>
                 )}
               </Col>
@@ -86,7 +89,7 @@ const OneItemInBasket: FC<DeviceItemProps> = ({ device }) => {
 
             <Row className="mt-5">
               <Col xs={12} className="d-flex justify-content-center">
-                Count:
+                <b> Количество: </b>
               </Col>
             </Row>
 

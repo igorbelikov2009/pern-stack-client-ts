@@ -27,7 +27,6 @@ export interface IDevice {
 export interface IBasket {
   [x: string]: number;
   id: number;
-  // count: number;
 }
 
 export interface ICreateModalProps {
@@ -56,14 +55,16 @@ export type DeleteBrandOrTypeProps = {
 
 export interface sendOrderProps {
   auth: boolean;
-  mobile: string | number;
+  // mobile: string | number | undefined | null;
+  mobile: string | number | string[] | undefined;
   basket: any;
 }
 
 export interface fetchOrdersProps {
-  limit: number;
-  page: any;
-  complete: boolean;
+  limit: string | number;
+  page?: any;
+  complete?: string | boolean;
+  count?: any;
 }
 
 export interface fetchChangeStatusOrderProps {
@@ -76,4 +77,15 @@ export interface IRatingStarsProps {
   ratingVal: any;
   isAuth: boolean;
   isAccessRating: boolean;
+}
+
+export interface IOrder {
+  // key={id}
+  id: string | number;
+  complete?: string | boolean;
+  mobile: string | number | undefined;
+  createdAt: string | number;
+  updatedAt: string | number;
+  userId: string | number;
+  // reRender={reRender}
 }

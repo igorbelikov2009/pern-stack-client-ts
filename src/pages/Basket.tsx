@@ -1,3 +1,4 @@
+// Страница готовая
 import React, { FC, useContext } from "react";
 import { observer } from "mobx-react-lite";
 
@@ -28,7 +29,7 @@ const Basket: FC = observer(() => {
     <>
       <br />
       <NavLink to={ORDERING_ROUTE}>
-        <Button>Checkout</Button>
+        <Button>Проверить в заказах</Button>
       </NavLink>
       <Row className="mt-3">
         <Col xs={12}>
